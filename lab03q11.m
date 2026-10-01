@@ -14,6 +14,7 @@ m = -150:150;
 mlength = length(m);
 ryy = zeros(mlength, 1);
 rww = zeros(mlength, 1);
+ryw = zeros(mlength, 1);
 
 for i = 1:mlength
     lag = m(i);
@@ -33,5 +34,15 @@ for i = 1:mlength
     end
 end
 
+for i = 1:mlength
+    lag = m(i);
+    if lag >= 0
+        ryw(i) = sum(y(1+lag:N) .* w(1:N-lag));
+    else
+        ryw(i) = sum(y(1:N+lag) .* w(1-lag:N));
+    end
+end
+
 %stem(m, ryy, 'filled')
-stem(m, rww, 'filled')
+%stem(m, rww, 'filled')
+stem(m, ryw, 'filled')
