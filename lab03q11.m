@@ -19,9 +19,9 @@ ryw = zeros(mlength, 1);
 for i = 1:mlength
     lag = m(i);
     if lag >= 0
-        ryy(i) = sum(y(1+lag:N) .* y(1:N-lag));
+        ryy(i) = sum(y(1+lag:N) .* y(1:N-lag)); %multiplies the signal by a delayed version of itself and sums the result
     else
-        ryy(i) = sum(y(1:N+lag) .* y(1-lag:N));
+        ryy(i) = sum(y(1:N+lag) .* y(1-lag:N)); %calculates autocorrelation for negative lags by shifting the signal in reverse
     end
 end
     
